@@ -13,7 +13,7 @@ function draw()
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     drawGraph();
-    drawBoxes();
+    //drawBoxes();
 }
 
 function pixelToCoord(x, y)
@@ -89,7 +89,7 @@ function dispfunc(e)
 //always called last
 function drawUI(x, i)
 {
-    drawBoxes();
+    //drawBoxes();
     const math = document.getElementById("textual");
 
     //contruct TeX syntax for showing partial sum
