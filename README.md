@@ -1,2 +1,2 @@
 # complex-exponential
-Graphical demonstration of the complex exponential function in Processing.JS
+Graphical demonstration of the complex exponential function in JavaScript

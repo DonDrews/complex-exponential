@@ -1,1 +1,17 @@
-<h1>Test123</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="ce.css"/>
+        <meta charset="utf-8"/>
+        <title>Complex Exponential</title>
+        <script type="text/javascript" src="test.js"></script>
+        <script src="https://unpkg.com/mathjs@7.0.1/dist/math.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML.js"></script>
+    </head>
+    <body onload="draw();">
+        <div class="container" onmousemove="dispfunc(event)">
+            <canvas id="graph_canvas"></canvas>
+            <div id="textual" class="textual">\(x^2 + y^2 = z^2\)</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+body {
+    overflow-y: hidden; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    margin: 0;
+}
+
+.textual {
+    position: absolute;
+    top: 8px;
+    left: 300px;
+    font-size: 18px;
+    color: white;
+}
