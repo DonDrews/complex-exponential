@@ -1,10 +1,13 @@
 var canvas;
 var ctx;
+//distance between each line on the graph
 const lineGap = 75;
 var w;
 var h;
+//colors for graph arrows
 var colors = ['#FF0000', '#00BB00', '#0000FF'];
 
+//base drawing function called on load
 function draw()
 {
     canvas = document.getElementById('graph_canvas');
@@ -13,9 +16,9 @@ function draw()
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     drawGraph();
-    //drawBoxes();
 }
 
+//functions to convert from complex coordinates to screen coordinates
 function pixelToCoord(x, y)
 {
     var mathX = (x - (w / 2)) / (lineGap * 2);
@@ -31,6 +34,7 @@ function coordToPixel(r, i)
     return [screenX, screenY];
 }
 
+//toString() but with a truly fixed width
 function sign(number)
 {
     if(number < 0)
@@ -47,6 +51,7 @@ function factorial(k)
         return k * factorial(k - 1);
 }
 
+//gets a term from the series expansion
 function getTerm(z_r, z_i, k)
 {
     var theta = Math.atan2(z_i, z_r);
@@ -61,13 +66,17 @@ function getTerm(z_r, z_i, k)
     return [r, i];
 }
 
+//called each time the mouse moves
 function dispfunc(e)
 {
     drawGraph();
+
+    //arrow leading to cursor
     drawArrow(w / 2, h / 2, e.clientX, e.clientY, '#000000', 2, true);
 
     var [x, i] = pixelToCoord(e.clientX, e.clientY);
 
+    //draw all 15 arrows for each term
     var lastR = 0;
     var lastI = 0;
     for(var n = 0; n < 15; n++)
@@ -75,6 +84,8 @@ function dispfunc(e)
         var [termR, termI] = getTerm(x, i, n);
         var [dispX, dispY] = coordToPixel(termR + lastR, termI + lastI);
         var [origX, origY] = coordToPixel(lastR, lastI);
+
+        //only have arrow heads for the first two
         if(n < 2)
             drawArrow(origX, origY, dispX, dispY, colors[n % 3], 1, true);
         else
@@ -124,9 +135,12 @@ function drawGraph()
 
     ctx.lineWidth = 1;
 
+    var vertLines = (w / (2 * lineGap)) + 1;
+    var horiLines = (h / (2 * lineGap)) + 1;
+
     //draw all the graph lines
     ctx.strokeStyle = '#A0A0A0'
-    for(var x = -14; x < 14; x++)
+    for(var x = -vertLines; x < vertLines; x++)
     {
         if(x === 0)
             continue;
@@ -137,7 +151,7 @@ function drawGraph()
         ctx.lineTo(xPos, h);
         ctx.stroke();
     }
-    for(var y = -8; y < 8; y++)
+    for(var y = -horiLines; y < horiLines; y++)
     {
         if(y === 0)
             continue;
@@ -192,17 +206,14 @@ function drawGraph()
     }
 }
 
-function drawBoxes()
-{
-    ctx.fillStyle = '#000000B0';
-    ctx.fillRect(290, 15, 1000, 80);
-}
-
+//generalized function for drawing arrows on the graph
+//locations are in screen coords
 function drawArrow(x, y, toX, toY, color, size, head)
 {
     ctx.strokeStyle = color;
     ctx.fillStyle = color;
     
+    //coordinates used for drawing the arrow head
     var len = Math.sqrt(Math.pow(toX - x, 2) + Math.pow(toY - y, 2));
     var backX = ((toX - x) / len) * 10 * size;
     var backY = ((toY - y) / len) * 10 * size;
