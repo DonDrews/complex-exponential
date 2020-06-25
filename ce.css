@@ -7,7 +7,7 @@ body {
 .textual {
     position: absolute;
     top: 8px;
-    right: 200px;
+    right: 8px;
     font-size: 18px;
     color: white;
     padding-top: 0px;
@@ -21,7 +21,7 @@ body {
     top: 8px;
     left: 8px;
     font-size: 16px;
-    font-family: 'sans-serif';
+    font-family: 'Sans-Serif';
     max-width: 400px;
     padding: 10px;
     color: white;

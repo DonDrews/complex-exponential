@@ -96,7 +96,7 @@ function drawUI(x, i)
     fullExp = '$$e^{' + sign(x) + sign(i) + 'i}=';
     fullExp += '1+(' + sign(x) + sign(i) + 'i)';
     
-    for(var n = 2; n < 5; n++)
+    for(var n = 2; n < 4; n++)
     {
         fullExp += '+\\frac{';
         fullExp += '(' + sign(x) + sign(i);
